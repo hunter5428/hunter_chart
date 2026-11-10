@@ -1,0 +1,475 @@
+import type { ChartSpec } from "hunter-charts"
+
+const source = "예시. 화면 확인용 숫자"
+
+export const samples: ChartSpec[] = [
+  {
+    type: "column",
+    title: "주요국 실질 정책금리",
+    unitLeft: "(%)",
+    categories: ["미국", "유로존", "일본", "한국"],
+    digits: 1,
+    series: [
+      { name: "현재", values: [4.4, 2.1, 0.5, 2.5] },
+      { name: "27년 6월", values: [3.5, 1.8, 0.8, 2.4] },
+      { name: "27년 12월", values: [3.1, 1.8, 1.0, 2.2] },
+    ],
+    source,
+  },
+  {
+    type: "column",
+    title: "스타일별 주가 상승률",
+    unitLeft: "(%)",
+    categories: ["순수성장", "성장", "가치", "순수가치", "대형주", "중소형주"],
+    digits: 1,
+    highlight: ["중소형주"],
+    series: [{ name: "상승률", values: [22.9, 25.9, 34.8, 5.1, 37.4, -12.0], labels: "all" }],
+    source,
+  },
+  {
+    type: "line",
+    title: "12개월 선행 PER과 PBR",
+    unitLeft: "(x)",
+    unitRight: "(x)",
+    categories: ["18", "19", "20", "21", "22", "23", "24", "25", "26"],
+    digits: 1,
+    series: [
+      { name: "PER", values: [9.2, 11.4, 14.1, 11.2, 8.8, 12.4, 10.2, 11.6, 8.4], tone: 0, labels: "end" },
+      { name: "PBR", values: [0.92, 0.98, 1.18, 1.08, 0.86, 0.97, 0.9, 1.02, 1.15], tone: 2, axis: "right", labels: "end" },
+    ],
+    guides: [{ value: 10.2, label: "10년 평균 PER", tone: 0, axis: "left" }],
+    source,
+  },
+  {
+    type: "line",
+    title: "주가와 목표주가",
+    unitLeft: "(천원)",
+    categories: ["25.05", "25.08", "25.11", "26.02", "26.05", "26.08", "26.11"],
+    series: [
+      { name: "주가", values: [78, 82, 95, 110, 128, 150, 142], tone: 2 },
+      { name: "목표주가", values: [120, 120, 150, 150, 200, 200, 160], tone: 0, step: true, labels: "end" },
+    ],
+    source,
+  },
+  {
+    type: "combo",
+    title: "매출 증가율과 영업이익",
+    unitLeft: "(%)",
+    unitRight: "(조원)",
+    categories: ["2022", "2023", "2024", "2025", "2026F", "2027F", "2028F"],
+    forecastFrom: 4,
+    digits: 1,
+    note: "주: F는 전망",
+    series: [
+      { name: "매출액 증가율", values: [2.5, -0.5, 5.5, 6.9, 33.5, 15.9, 8.3], mark: "bar", axis: "left", labels: "all" },
+      { name: "영업이익", values: [48, 42, 55, 61, 98, 121, 130], mark: "line", axis: "right", tone: 2, labels: "end" },
+    ],
+    source,
+  },
+  {
+    type: "column",
+    title: "영업이익 구성",
+    unitLeft: "(조원)",
+    categories: ["2024", "2025", "2026F", "2027F"],
+    stack: true,
+    forecastFrom: 2,
+    series: [
+      { name: "반도체", values: [28, 36, 52, 61] },
+      { name: "금융", values: [11, 12, 13, 14] },
+      { name: "기타", values: [18, 16, 17, 15] },
+    ],
+    source,
+  },
+  {
+    type: "bar",
+    title: "투자주체 순매수",
+    unitLeft: "(조원)",
+    categories: ["개인", "기관", "외국인", "연기금"],
+    series: [{ name: "순매수", values: [42, 18, -36, 7], labels: "all" }],
+    source,
+  },
+  {
+    type: "lollipop",
+    title: "주주환원율",
+    unitLeft: "(%)",
+    categories: ["은행", "증권", "보험", "지주", "카드"],
+    series: [{ name: "환원율", values: [38, 32, 29, 24, 18], labels: "all" }],
+    source,
+  },
+  {
+    type: "scatter",
+    title: "업종 PER과 시가총액 비중",
+    xLabel: "(x, 12MF PER)",
+    yLabel: "(%, 시가총액 비중)",
+    points: [
+      { x: 4, y: 0.8, label: "유틸리티", size: 12 },
+      { x: 7, y: 1.4, label: "은행", size: 28 },
+      { x: 9, y: 2.2, label: "자동차", size: 40 },
+      { x: 12, y: 1.6, label: "보험", size: 18 },
+      { x: 18, y: 2.4, label: "IT하드웨어", size: 26 },
+      { x: 24, y: 1.9, label: "기계", size: 16 },
+      { x: 29, y: 3.8, label: "2차전지", size: 48 },
+      { x: 33, y: 5.6, label: "건강관리", size: 22 },
+    ],
+    source,
+  },
+  {
+    type: "range",
+    title: "영업이익 컨센서스 분포",
+    unitLeft: "(조원)",
+    categories: ["27F", "28F"],
+    series: [
+      { name: "3개월 전", values: [540, 430], tone: 1 },
+      { name: "1개월 전", values: [610, 500], tone: 2 },
+      { name: "현재", values: [660, 560], tone: 0 },
+      { name: "평균", values: [600, 490], tone: 4, mark: "mean" },
+    ],
+    source,
+  },
+  {
+    type: "waterfall",
+    title: "영업이익 증감",
+    unitLeft: "(조원)",
+    steps: [
+      { label: "2026", value: 100, total: true },
+      { label: "반도체", value: 42 },
+      { label: "자동차", value: -8 },
+      { label: "금융", value: 6 },
+      { label: "기타", value: -4 },
+      { label: "2027F", value: 136, total: true },
+    ],
+    source,
+  },
+  {
+    type: "pie",
+    title: "매출 구성",
+    slices: [
+      { label: "백화점", value: 46 },
+      { label: "할인점", value: 32 },
+      { label: "기타", value: 22 },
+    ],
+    source,
+  },
+  {
+    type: "table",
+    title: "실적과 밸류에이션",
+    columns: ["", "2025", "2026E", "2027E"],
+    rows: [
+      ["매출액", 100, 128, 141],
+      ["영업이익", 12, 24, 31],
+      ["영업이익률", 12.0, 18.8, 22.0],
+      ["PER", 11.2, 9.4, 8.1],
+    ],
+    digits: 1,
+    source,
+  },
+  {
+    type: "area",
+    title: "업종 순환매 강도",
+    unitLeft: "(%p)",
+    categories: ["20", "21", "22", "23", "24", "25", "26"],
+    series: [{ name: "순환매 강도", values: [18, 31, 24, 15, 22, 36, 28] }],
+    source,
+  },
+  {
+    type: "area",
+    title: "장기금리 구성",
+    unitLeft: "(%)",
+    categories: ["21", "22", "23", "24", "25", "26", "27F"],
+    stack: true,
+    digits: 1,
+    series: [
+      { name: "단기금리 기대", values: [0.8, 2.4, 3.1, 2.9, 2.3, 2.2, 2.1] },
+      { name: "기간 프리미엄", values: [0.6, 0.9, 0.5, 0.2, 0.4, 0.9, 1.1] },
+      { name: "신용 스프레드", values: [0.4, 0.8, 0.7, 0.5, 0.5, 0.6, 0.6] },
+    ],
+    source,
+  },
+  {
+    type: "combo",
+    title: "신용잔고와 주가지수",
+    unitLeft: "(조원)",
+    unitRight: "(pt)",
+    categories: ["25.01", "25.04", "25.07", "25.10", "26.01", "26.04", "26.07", "26.10"],
+    series: [
+      { name: "신용잔고", values: [16, 17, 19, 22, 25, 29, 33, 31], mark: "area", tone: 1 },
+      { name: "코스피", values: [2500, 2650, 3100, 3900, 4600, 5400, 6200, 5900], mark: "line", axis: "right", tone: 0, labels: "end" },
+    ],
+    source,
+  },
+  {
+    type: "combo",
+    title: "업종별 순이익과 증가율",
+    unitLeft: "(조원)",
+    unitRight: "(%)",
+    categories: ["반도체", "자동차", "은행", "조선", "기계", "화학"],
+    digits: 1,
+    series: [
+      { name: "27F 순이익", values: [182, 31, 24, 12, 9, 4] },
+      { name: "증가율", values: [58.0, 4.2, 6.1, 31.5, 18.4, 42.0], mark: "dot", axis: "right", tone: 2, labels: "all" },
+    ],
+    source,
+  },
+  {
+    type: "column",
+    title: "투자주체별 순매수와 합계",
+    unitLeft: "(조원)",
+    categories: ["1Q26", "2Q26", "3Q26", "4Q26F"],
+    stack: true,
+    series: [
+      { name: "외국인", values: [-18, -42, -31, 6] },
+      { name: "기관", values: [9, 14, 11, 8] },
+      { name: "개인", values: [14, 33, 25, -4] },
+      { name: "합계", values: [5, 5, 5, 10], mark: "dot", tone: 2, labels: "all" },
+    ],
+    source,
+  },
+  {
+    type: "column",
+    title: "자금배분 비중",
+    unitLeft: "(%)",
+    categories: ["보수적", "중간", "적극적"],
+    stack: "percent",
+    series: [
+      { name: "단기자금", values: [36.2, 28.2, 20.1], labels: "all" },
+      { name: "국고채 외", values: [16.9, 16.1, 15.3], labels: "all" },
+      { name: "국고채", values: [11.3, 20.1, 29.0], labels: "all" },
+    ],
+    source,
+  },
+  {
+    type: "column",
+    title: "지수 시나리오 범위",
+    unitLeft: "(pt)",
+    categories: ["하단", "상반기 평균", "상반기 상단", "하반기 평균", "하반기 상단"],
+    series: [{ name: "코스피 범위", values: [5384, 6671, 7801, 7292, 8536], low: [4845, 5400, 6315, 5903, 6910], labels: "all" }],
+    source,
+  },
+  {
+    type: "column",
+    title: "주주환원수익률과 과거 범위",
+    unitLeft: "(%)",
+    categories: ["한국", "미국", "일본", "유럽", "대만"],
+    digits: 1,
+    series: [
+      { name: "27F 주주환원수익률", values: [4.1, 3.2, 3.6, 5.0, 2.8] },
+      { name: "10년 범위", values: [4.6, 4.4, 4.0, 6.1, 4.5], low: [1.8, 2.6, 2.1, 3.4, 2.2], mark: "whisker", tone: 2 },
+    ],
+    source,
+  },
+  {
+    type: "bar",
+    title: "업종 PER 범위와 중앙값",
+    unitLeft: "(x)",
+    categories: ["반도체", "자동차", "은행", "조선", "화장품"],
+    digits: 1,
+    series: [
+      { name: "10년 범위", values: [18.5, 9.8, 7.2, 31.0, 28.4], low: [5.1, 3.9, 3.6, 9.5, 12.2], mark: "whisker", tone: 1 },
+      { name: "중앙값", values: [10.4, 6.3, 5.1, 16.8, 19.0], mark: "dot", tone: 0 },
+    ],
+    source,
+  },
+  {
+    type: "line",
+    title: "기준금리 전망 범위",
+    unitLeft: "(%)",
+    categories: ["1Q26", "2Q26", "3Q26", "4Q26", "1Q27F", "2Q27F", "3Q27F", "4Q27F"],
+    digits: 2,
+    series: [
+      { name: "전망 범위", values: [null, null, null, 2.5, 2.75, 3.0, 3.25, 3.25], low: [null, null, null, 2.5, 2.25, 2.25, 2.0, 2.0], mark: "ribbon", tone: 0 },
+      { name: "기준금리", values: [2.75, 2.5, 2.5, 2.5, 2.5, 2.5, 2.75, 2.75], tone: 2, step: true, labels: "end" },
+    ],
+    source,
+  },
+  {
+    type: "line",
+    title: "경기선행지수 순환",
+    unitLeft: "(pt)",
+    categories: ["19", "20", "21", "22", "23", "24", "25", "26", "27F"],
+    digits: 1,
+    series: [
+      { name: "한국", values: [99.2, 98.1, 101.8, 99.4, 98.6, 100.2, 100.9, 101.6, 100.8], smooth: true },
+      { name: "미국", values: [99.8, 97.5, 101.2, 100.1, 99.0, 99.6, 100.3, 100.7, 100.4], smooth: true },
+    ],
+    source,
+  },
+  {
+    type: "line",
+    title: "지수 장기 추이",
+    unitLeft: "(pt, 로그)",
+    categories: ["80", "85", "90", "95", "00", "05", "10", "15", "20", "25", "26"],
+    log: true,
+    series: [{ name: "코스피", values: [107, 163, 696, 883, 505, 1379, 2051, 1961, 2873, 4200, 6100] }],
+    source,
+  },
+  {
+    type: "line",
+    title: "긴축 구간과 장단기 금리차",
+    unitLeft: "(%p)",
+    categories: ["16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26"],
+    digits: 1,
+    spans: [
+      { from: 1, to: 2, label: "긴축" },
+      { from: 6, to: 7, label: "긴축" },
+    ],
+    series: [{ name: "10년-2년", values: [1.2, 0.8, 0.3, 0.1, 0.6, 1.1, -0.4, -0.8, -0.2, 0.4, 0.7] }],
+    source,
+  },
+  {
+    type: "band",
+    title: "12개월 선행 PBR 밴드",
+    unitLeft: "(천원)",
+    categories: ["21", "22", "23", "24", "25", "26", "27F"],
+    series: [
+      { name: "주가", values: [48, 39, 44, 52, 61, 88, 96] },
+      { name: "0.4x", values: [30, 33, 36, 39, 43, 48, 53] },
+      { name: "0.6x", values: [45, 49, 54, 59, 65, 72, 80] },
+      { name: "0.8x", values: [60, 66, 72, 78, 86, 96, 106] },
+      { name: "1.0x", values: [75, 82, 90, 98, 108, 120, 133] },
+    ],
+    source,
+  },
+  {
+    type: "scatter",
+    title: "이익 증가율과 배당수익률",
+    xLabel: "(%, 27F 순이익 증가율)",
+    yLabel: "(%, 배당수익률)",
+    guides: [
+      { value: 15, axis: "x", label: "반도체 제외 15%" },
+      { value: 2.6, label: "국고채 3년 2.6%" },
+    ],
+    points: [
+      { x: 4, y: 5.1, label: "은행" },
+      { x: 9, y: 4.2, label: "통신" },
+      { x: 12, y: 3.4, label: "자동차" },
+      { x: 22, y: 1.8, label: "기계" },
+      { x: 31, y: 1.1, label: "조선" },
+      { x: 42, y: 1.4, label: "화학" },
+    ],
+    source,
+  },
+  {
+    type: "scatter",
+    title: "ROE와 PBR의 관계",
+    xLabel: "(%, 27F ROE)",
+    yLabel: "(x, 12MF PBR)",
+    trend: true,
+    points: [
+      { x: 5, y: 0.45, label: "유틸리티" },
+      { x: 8, y: 0.62, label: "은행" },
+      { x: 10, y: 0.7, label: "자동차" },
+      { x: 12, y: 1.05, label: "보험" },
+      { x: 15, y: 1.3, label: "기계" },
+      { x: 19, y: 1.9, label: "조선" },
+      { x: 24, y: 2.2, label: "반도체" },
+    ],
+    source,
+  },
+  {
+    type: "quadrant",
+    title: "업종별 이익 변화와 주가 성과",
+    xLabel: "(%, 27F 순이익 변화율)",
+    yLabel: "(%, 3개월 수익률)",
+    quadrants: ["이익 하향·주가 상승", "이익 상향·주가 상승", "이익 하향·주가 하락", "이익 상향·주가 하락"],
+    points: [
+      { x: 16, y: 24, label: "반도체" },
+      { x: 9, y: 12, label: "전력기기" },
+      { x: -6, y: 8, label: "증권" },
+      { x: -11, y: -9, label: "화학" },
+      { x: -4, y: -14, label: "2차전지" },
+      { x: 7, y: -6, label: "자동차" },
+      { x: 3, y: -11, label: "통신" },
+    ],
+    source,
+  },
+  {
+    type: "heatmap",
+    title: "업종별 기간 수익률",
+    columns: ["업종", "1주", "1개월", "3개월", "6개월"],
+    rows: [
+      ["반도체", 2.1, 8.4, 24.0, 61.5],
+      ["전력기기", 1.2, 5.6, 12.3, 38.2],
+      ["은행", -0.4, 1.8, 6.2, 14.9],
+      ["자동차", -1.3, -2.7, -6.1, 4.4],
+      ["2차전지", -2.6, -7.9, -14.2, -21.8],
+    ],
+    digits: 1,
+    source,
+  },
+  {
+    type: "strip",
+    title: "영업이익 추정치 분포",
+    unitLeft: "(조원)",
+    categories: ["2027F 영업이익", "2028F 영업이익"],
+    digits: 1,
+    series: [
+      { name: "3개월 전", values: [555.7, 553.1], tone: 1, spread: [[350, 410, 520, 560, 590, 615, 640, 662.5], [305, 320, 360, 440, 510, 585, 650, 700, 761.3]] },
+      { name: "1개월 전", values: [599.1, 656.3], tone: 2, spread: [[438, 560, 585, 600, 620, 640, 665, 711.8], [336, 520, 595, 630, 660, 700, 750, 790, 832.3]] },
+      { name: "현재", values: [606.6, 668.8], tone: 0, spread: [[438, 545, 580, 605, 630, 660, 711.8], [336, 520, 590, 640, 680, 730, 790, 830, 868.6]] },
+    ],
+    source,
+  },
+  {
+    type: "profile",
+    title: "가격대별 거래대금과 개인 순매수",
+    categories: ["9,200", "8,800", "8,400", "8,000", "7,600", "7,200", "6,800", "6,400", "6,000", "5,600", "5,200", "4,800", "4,400"],
+    series: [
+      { name: "거래대금 비중 (%)", values: [1.2, 2.4, 3.6, 4.1, 3.2, 4.4, 8.2, 7.6, 4.3, 5.2, 4.6, 2.1, 1.4], tone: 4 },
+      { name: "개인 순매수 (조원)", values: [2, 6, 14, 22, 9, -12, 18, -6, 4, 11, 7, 3, 1], tone: 0 },
+    ],
+    source,
+  },
+  {
+    type: "multiples",
+    title: "업종별 ROE 추이 (2025~2027F)",
+    unitLeft: "(%)",
+    categories: ["2025", "2026", "2027F"],
+    digits: 1,
+    series: [
+      { name: "에너지", values: [-1.5, 23.9, 17.2], labels: "all" },
+      { name: "화학", values: [-4.9, 1.7, 4.1], labels: "all" },
+      { name: "철강", values: [1.1, 2.5, 3.4], labels: "all" },
+      { name: "기계", values: [6.3, 9.9, 12.3], labels: "all" },
+      { name: "통신", values: [7.0, 8.8, 8.9], labels: "all" },
+      { name: "조선", values: [19.3, 24.1, 23.3], labels: "all" },
+      { name: "자동차", values: [9.2, 8.4, 8.7], labels: "all" },
+      { name: "화장품", values: [8.8, 12.3, 13.4], labels: "all" },
+      { name: "ITHW", values: [4.1, 11.8, 19.5], labels: "all" },
+      { name: "2차전지", values: [-3.5, -0.2, 5.9], labels: "all" },
+    ],
+    source,
+  },
+  {
+    type: "rating",
+    title: "자산별 투자 매력도",
+    categories: ["미국 주식", "중국 주식", "한국 주식", "한국 국채", "미국 국채", "글로벌 HY", "귀금속", "산업금속", "리츠"],
+    series: [
+      { name: "투자 매력도 6M", values: [1, 1, 1, -1, 0, -1, 1, 2, 0] },
+      { name: "12M", values: [0, 0, 0, 1, 1, -1, 1, 1, 1] },
+    ],
+    source,
+  },
+]
+
+export const pasteExample = ["", "2024", "2025", "2026", "2027F"].join("\t") + "\n" + ["매출증가율", "5.5", "6.9", "33.5", "15.9"].join("\t") + "\n" + ["영업이익률", "8.1", "7.6", "23.7", "30.1"].join("\t") + "\n"
+
+export function themeLabel(name: string): string {
+  switch (name) {
+    case "lime-gray":
+      return "라임 그레이"
+    case "lime-navy":
+      return "라임 네이비"
+    case "lime-mono":
+      return "라임 모노"
+    case "lime-gold":
+      return "라임 골드"
+    case "orange-gray":
+      return "오렌지 그레이"
+    case "navy-gold":
+      return "네이비 골드"
+    case "blue-mono":
+      return "블루 모노"
+    default:
+      return name
+  }
+}
